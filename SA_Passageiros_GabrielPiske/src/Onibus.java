@@ -13,7 +13,7 @@ public class Onibus {
 
     }
 
-    public Onibus(int cpMax, String placa) {
+    public Onibus(String placa, int cpMax) {
         this.capacidadeMaxima = cpMax;
         this.passageirosAtual = 0;
         this.placa = placa;
