@@ -6,21 +6,21 @@ public class Viagem {
 
     private String data;
     private String hora;
-    private int qtdPassageiros;
     private Onibus onibus;
     private Linha linha;
+    private int qtdParadas;
 
     //Construtores
     public Viagem() {
-        this.qtdPassageiros = 0;
+        
     }
 
-    public Viagem(String dt, String hr, Onibus onibus, Linha linha) {
-        this.qtdPassageiros = 0;
-        this.data = dt;
-        this.hora = hr;
+    public Viagem(String data, String hora, Onibus onibus, Linha linha) {
+        this.data = data;
+        this.hora = hora;
         this.onibus = onibus;
         this.linha = linha;
+        this.qtdParadas = 0;
     }
 
     //Gets e Sets
@@ -40,14 +40,6 @@ public class Viagem {
         this.hora = hora;
     }
 
-    public int getQtdPassageiros() {
-        return qtdPassageiros;
-    }
-
-    public void setQtdPassageiros(int qtdPassageiros) {
-        this.qtdPassageiros = qtdPassageiros;
-    }
-
     public Onibus getOnibus() {
         return onibus;
     }
@@ -64,5 +56,11 @@ public class Viagem {
         this.linha = linha;
     }
 
-    //Métodos
+    public int getQtdParadas() {
+        return qtdParadas;
+    }
+
+    public void setQtdParadas(int qtdParadas) {
+        this.qtdParadas = qtdParadas;
+    }
 }

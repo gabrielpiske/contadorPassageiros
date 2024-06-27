@@ -4,8 +4,8 @@
  */
 public class Onibus {
 
-    private int capacidadeMaxima;
     private String placa;
+    private int capacidadeMaxima;
     private int passageirosAtual;
 
     //------------> Construtores
@@ -14,9 +14,9 @@ public class Onibus {
     }
 
     public Onibus(String placa, int cpMax) {
+        this.placa = placa;
         this.capacidadeMaxima = cpMax;
         this.passageirosAtual = 0;
-        this.placa = placa;
     }
 
     public Onibus(int cpMax, String placa, int pasAtual) {
@@ -50,9 +50,8 @@ public class Onibus {
         this.passageirosAtual = passageirosAtual;
     }
 
-    //------------> Métodos
     //Subir passageiros
-    public void entradaPassageiros(int qtdPessoas) {
+    /* public void entradaPassageiros(int qtdPessoas) {
         int resto;
         if (qtdPessoas > this.capacidadeMaxima - this.passageirosAtual) {
             resto = qtdPessoas - (this.capacidadeMaxima - this.passageirosAtual);
@@ -71,5 +70,5 @@ public class Onibus {
         } else {
             System.out.println("O passageiro desceu");
         }
-    }
+    }*/
 }

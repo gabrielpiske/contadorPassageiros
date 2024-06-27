@@ -12,10 +12,6 @@ public class Linha {
 
     }
     
-    public Linha(String term) {
-        this.terminal = term;
-    }
-    
     public Linha(int nmPar, String term) {
         this.nmParadas = nmPar;
         this.terminal = term;
