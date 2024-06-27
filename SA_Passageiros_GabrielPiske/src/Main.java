@@ -7,6 +7,7 @@ import java.util.Scanner;
  */
 public class Main {
 
+    //Variavéis Globais
     public static Scanner ler = new Scanner(System.in);
     public static ArrayList<Onibus> listaOnibus = new ArrayList<>();
     public static ArrayList<Linha> listaLinha = new ArrayList<>();
@@ -15,6 +16,7 @@ public class Main {
     public static void main(String[] args) {
         int opcao;
         do {
+            //Menu
             System.out.println("Menu: ");
             System.out.println("1 - Cadastro Onibus");
             System.out.println("2 - Cadastro Linha");
@@ -39,6 +41,7 @@ public class Main {
         } while (opcao != 5);
     }
 
+    //Tela para cadastramento do objeto onibus e já colocando-o na lista
     public static void cadastrarOnibus() {
         System.out.println("Cadastrar Onibus: ");
         System.out.println("Informe a Placa do Onibus: ");
@@ -50,6 +53,7 @@ public class Main {
         System.out.println("Onibus Cadastrado com sucesso!");
     }
 
+    //Tela para cadastramento do objeto linha e já colocando-a na lista
     public static void cadastrarLinha() {
         System.out.println("Cadastrar Linha: ");
         System.out.println("Informe o terminal da Linha: ");
@@ -61,22 +65,27 @@ public class Main {
         System.out.println("Linha Cadastrada com sucesso!");
     }
 
+    //Tela para cadastramento do objeto viagem já puxando onibus e linha correspondente e adicionando a lista no final
     public static void cadastrarViagem() {
         System.out.println("Cadastrar Viagem: ");
+        
+        //Selecionando o onibus correspondente
         System.out.println("Selecione o Onbus: ");
         for (int i = 0; i < listaOnibus.size(); i++) {
             System.out.println((i + 1) + "." + listaOnibus.get(i).getPlaca());
         }
         int onibusSelect = ler.nextInt();
         Onibus onibus = listaOnibus.get(onibusSelect);
-
+        
+        //Selecionando a linha correpondente
         System.out.println("Selecione a Linha: ");
         for (int i = 0; i < listaLinha.size(); i++) {
             System.out.println((i + 1) + "." + listaLinha.get(i).getTerminal());
         }
         int linhaSelect = ler.nextInt();
         Linha linha = listaLinha.get(linhaSelect);
-
+        
+        //Input da data e hora para o cadrasto
         System.out.println("Informe a Data da Viagem: ");
         String data = ler.next();
         System.out.println("Informe a Hora da Viagem: ");
@@ -85,5 +94,5 @@ public class Main {
         listaViagem.add(viagem);
         System.out.println("Viagem Cadastrada com Sucesso!");
     }
-
+    
 }

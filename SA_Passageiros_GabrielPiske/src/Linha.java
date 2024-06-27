@@ -33,6 +33,4 @@ public class Linha {
     public void setTerminal(String terminal) {
         this.terminal = terminal;
     }
-
-    //Métodos
 }
