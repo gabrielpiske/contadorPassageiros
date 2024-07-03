@@ -36,6 +36,9 @@ public class Main {
                 case 3:
                     cadastrarViagem();
                     break;
+                case 4:
+                    decorrerViagem();
+                    break;
             }
 
         } while (opcao != 5);
@@ -68,23 +71,23 @@ public class Main {
     //Tela para cadastramento do objeto viagem já puxando onibus e linha correspondente e adicionando a lista no final
     public static void cadastrarViagem() {
         System.out.println("Cadastrar Viagem: ");
-        
+
         //Selecionando o onibus correspondente
         System.out.println("Selecione o Onbus: ");
         for (int i = 0; i < listaOnibus.size(); i++) {
             System.out.println((i + 1) + "." + listaOnibus.get(i).getPlaca());
         }
         int onibusSelect = ler.nextInt();
-        Onibus onibus = listaOnibus.get(onibusSelect);
-        
+        Onibus onibus = listaOnibus.get(onibusSelect - 1);
+
         //Selecionando a linha correpondente
         System.out.println("Selecione a Linha: ");
         for (int i = 0; i < listaLinha.size(); i++) {
             System.out.println((i + 1) + "." + listaLinha.get(i).getTerminal());
         }
         int linhaSelect = ler.nextInt();
-        Linha linha = listaLinha.get(linhaSelect);
-        
+        Linha linha = listaLinha.get(linhaSelect - 1);
+
         //Input da data e hora para o cadrasto
         System.out.println("Informe a Data da Viagem: ");
         String data = ler.next();
@@ -95,4 +98,37 @@ public class Main {
         System.out.println("Viagem Cadastrada com Sucesso!");
     }
     
+    public static void decorrerViagem(){
+        System.out.println("Decorer Viagem: ");
+        
+        System.out.println("Selecione a Viagem:");
+        for(int i = 0; i < listaViagem.size(); i++){
+            Viagem viagem = listaViagem.get(i);
+            System.out.println((i+1) + ". Data: " + viagem.getData() + ", Hora: " + viagem.getHora() + ", Onibus: " + viagem.getOnibus().getPlaca() + ",Linha: " + viagem.getLinha().getTerminal());
+        }
+        int viagemSele = ler.nextInt();
+        Viagem viagem = listaViagem.get(viagemSele - 1);
+        
+        Onibus onibus = viagem.getOnibus();
+        Linha linha = viagem.getLinha();
+        
+        for(int i = 0; i < linha.getNmParadas(); i++){
+            System.out.println("Parada " + (i+1) + ": ");
+            System.out.println("Quantos Passageiros Subiram? ");
+            int subiram = ler.nextInt();
+            onibus.setPassageirosAtual(onibus.getPassageirosAtual() + subiram);
+            
+            System.out.println("Quantos Passageiros Desceram? ");
+            int desceram = ler.nextInt();
+            if(desceram > onibus.getPassageirosAtual()){
+                desceram = onibus.getPassageirosAtual();
+            }
+            onibus.setPassageirosAtual(onibus.getPassageirosAtual() - desceram);
+            
+            System.out.println("Passageiros Atuais no onibus: " + onibus.getPassageirosAtual());
+        }
+        System.out.println("Viagem Concluida!!!");
+        System.out.println("Total de Passageiros: " + onibus.getPassageirosAtual());
+    }
+
 }
