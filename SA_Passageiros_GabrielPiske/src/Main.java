@@ -116,15 +116,15 @@ public class Main {
         Viagem viagem = new Viagem(data, hora, onibus, linha);
         listaViagem.add(viagem);
         System.out.println("Viagem Cadastrada com Sucesso!");
-        
+
         Viagem viagemRetornado = decorrerViagem();
-        
+
         FileWriter arquivo = new FileWriter("registroViagem.txt", true);
         PrintWriter gravador = new PrintWriter(arquivo);
         gravador.println(viagemRetornado);
         gravador.close();
     }
-    
+
     //Faz a parte lógica do decorrimento da viagem instanciando os onibus/linhas próprio da viagem
     public static Viagem decorrerViagem() {
         System.out.println("Decorer Viagem: ");
@@ -141,8 +141,13 @@ public class Main {
         Onibus onibus = viagem.getOnibus();
         Linha linha = viagem.getLinha();
 
+        int totalSubiram = 0;
+        int totalDesceram = 0;
+
         for (int i = 0; i < linha.getNmParadas(); i++) {
             System.out.println("Parada " + (i + 1) + ": ");
+
+            //Subida
             System.out.println("Quantos Passageiros Subiram? ");
             int subiram = ler.nextInt();
             if (onibus.getPassageirosAtual() + subiram > onibus.getCapacidadeMaxima()) {
@@ -150,21 +155,37 @@ public class Main {
                 subiram = onibus.getCapacidadeMaxima() - onibus.getPassageirosAtual();
             }
             onibus.setPassageirosAtual(onibus.getPassageirosAtual() + subiram);
+            totalSubiram += subiram;
 
-            System.out.println("Quantos Passageiros Desceram? ");
-            int desceram = ler.nextInt();
-            if (desceram > onibus.getPassageirosAtual()) {
+            // Descida
+            int desceram = 0;
+            if (i == 0) {
+                System.out.println("Primeira parada: Ninguem pode descer");
+            } else if (i == linha.getNmParadas() - 1) {
                 desceram = onibus.getPassageirosAtual();
+                System.out.println("Ultima parada: Todos devem descer");
+            } else {
+                System.out.println("Quantos Passageiros Desceram? ");
+                desceram = ler.nextInt();
+                if (desceram > onibus.getPassageirosAtual()) {
+                    desceram = onibus.getPassageirosAtual();
+                }
             }
+
             onibus.setPassageirosAtual(onibus.getPassageirosAtual() - desceram);
+            totalDesceram += desceram;
 
             System.out.println("Passageiros Atuais no onibus: " + onibus.getPassageirosAtual());
         }
+        // Balanço Geral
         System.out.println("Viagem Concluida!!!");
-        System.out.println("Total de Passageiros: " + onibus.getPassageirosAtual());
+        System.out.println("Total de Passageiros que subiram: " + totalSubiram);
+        System.out.println("Total de Passageiros que desceram: " + totalDesceram);
+        System.out.println("Passageiros Atuais no Onibus: " + onibus.getPassageirosAtual());
+
         return viagem;
     }
-    
+
     //Faz a recuperação dos Dados do Arquivo registroOnibus.txt para utilizar no programa
     private static void recuperarOnibus() throws IOException {
         String aarq = "registroOnibus.txt";
@@ -182,7 +203,7 @@ public class Main {
                     }
                     //separa dados da linha do arquivo de texto pela ,
                     String[] linhaAtualOnibusArquivo = linha.split(",");
-                    //cria objeto onibus passando parametros do arquivo de texto parametro 0 é placa e 1 é capacidade mÊxima
+                    //cria objeto onibus passando parametros do arquivo de texto parametro 0 é placa e 1 é capacidade máxima
                     Onibus onibus = new Onibus(linhaAtualOnibusArquivo[0], Integer.parseInt(linhaAtualOnibusArquivo[1]));
                     //adiciona na lista de onibus
                     listaOnibus.add(onibus);
@@ -193,7 +214,7 @@ public class Main {
 
         }
     }
-    
+
     //Faz a recuperação dos Dados do Arquivo registroViagem.txt para utilizar no programa
     private static void recuperarViagem() throws IOException {
         String aarq = "registroViagem.txt";
@@ -214,7 +235,7 @@ public class Main {
                     Linha linhaHist = new Linha(Integer.parseInt(linhaAtualViagemArquivo[5]), linhaAtualViagemArquivo[4]);
                     Onibus onibusHist = new Onibus(linhaAtualViagemArquivo[2], Integer.parseInt(linhaAtualViagemArquivo[3]));
 
-                    //cria objeto onibus passando parametros do arquivo de texto parametro 0 é placa e 1 é capacidade maxima
+                    //cria objeto onibus passando parametros do arquivo de texto parametro 0 é placa e 1 é capacidade máxima
                     Viagem viagem = new Viagem(linhaAtualViagemArquivo[0], linhaAtualViagemArquivo[1], onibusHist, linhaHist);
                     //adiciona na lista de onibus
                     listaViagem.add(viagem);
@@ -225,7 +246,7 @@ public class Main {
 
         }
     }
-    
+
     //Faz a recuperação dos Dados do Arquivo registroLinha.txt para utilizar no programa
     private static void recuperarLinha() throws IOException {
         String aarq = "registroLinha.txt";
@@ -243,7 +264,7 @@ public class Main {
                     }
                     //separa dados da linha do arquivo de texto pela ,
                     String[] linhaAtualLinhaArquivo = linha.split(",");
-                    //cria objeto onibus passando parametros do arquivo de texto parametro 0 é placa e 1 é capacidade mÊxima
+                    //cria objeto onibus passando parametros do arquivo de texto parametro 0 é placa e 1 é capacidade máxima
                     Linha linhaHist = new Linha(Integer.parseInt(linhaAtualLinhaArquivo[0]), linhaAtualLinhaArquivo[1]);
                     //adiciona na lista de onibus
                     listaLinha.add(linhaHist);
