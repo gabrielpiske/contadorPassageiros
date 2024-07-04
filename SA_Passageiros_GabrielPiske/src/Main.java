@@ -1,4 +1,7 @@
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -13,7 +16,7 @@ public class Main {
     public static ArrayList<Linha> listaLinha = new ArrayList<>();
     public static ArrayList<Viagem> listaViagem = new ArrayList<>();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         int opcao;
         do {
             //Menu
@@ -45,7 +48,7 @@ public class Main {
     }
 
     //Tela para cadastramento do objeto onibus e já colocando-o na lista
-    public static void cadastrarOnibus() {
+    public static void cadastrarOnibus() throws IOException {
         System.out.println("Cadastrar Onibus: ");
         System.out.println("Informe a Placa do Onibus: ");
         String placa = ler.next();
@@ -54,10 +57,15 @@ public class Main {
         Onibus onibus = new Onibus(placa, cpMax);
         listaOnibus.add(onibus);
         System.out.println("Onibus Cadastrado com sucesso!");
+        
+        FileWriter arquivo = new FileWriter("registroOnibus.txt", true);
+        PrintWriter gravador = new PrintWriter(arquivo);
+        gravador.print(onibus);
+        gravador.close();
     }
 
     //Tela para cadastramento do objeto linha e já colocando-a na lista
-    public static void cadastrarLinha() {
+    public static void cadastrarLinha() throws IOException {
         System.out.println("Cadastrar Linha: ");
         System.out.println("Informe o terminal da Linha: ");
         String terminal = ler.next();
@@ -66,10 +74,15 @@ public class Main {
         Linha linha = new Linha(nmParadas, terminal);
         listaLinha.add(linha);
         System.out.println("Linha Cadastrada com sucesso!");
+        
+        FileWriter arquivo = new FileWriter("registroLinha.txt", true);
+        PrintWriter gravador = new PrintWriter(arquivo);
+        gravador.print(linha);
+        gravador.close();
     }
 
     //Tela para cadastramento do objeto viagem já puxando onibus e linha correspondente e adicionando a lista no final
-    public static void cadastrarViagem() {
+    public static void cadastrarViagem() throws IOException {
         System.out.println("Cadastrar Viagem: ");
 
         //Selecionando o onibus correspondente
@@ -77,6 +90,7 @@ public class Main {
         for (int i = 0; i < listaOnibus.size(); i++) {
             System.out.println((i + 1) + "." + listaOnibus.get(i).getPlaca());
         }
+        System.out.print("Entrada: ");
         int onibusSelect = ler.nextInt();
         Onibus onibus = listaOnibus.get(onibusSelect - 1);
 
@@ -85,6 +99,7 @@ public class Main {
         for (int i = 0; i < listaLinha.size(); i++) {
             System.out.println((i + 1) + "." + listaLinha.get(i).getTerminal());
         }
+        System.out.print("Entrada: ");
         int linhaSelect = ler.nextInt();
         Linha linha = listaLinha.get(linhaSelect - 1);
 
@@ -96,6 +111,11 @@ public class Main {
         Viagem viagem = new Viagem(data, hora, onibus, linha);
         listaViagem.add(viagem);
         System.out.println("Viagem Cadastrada com Sucesso!");
+        
+        FileWriter arquivo = new FileWriter("registroViagem.txt", true);
+        PrintWriter gravador = new PrintWriter(arquivo);
+        gravador.print(viagem);
+        gravador.close();
     }
     
     public static void decorrerViagem(){
@@ -104,8 +124,9 @@ public class Main {
         System.out.println("Selecione a Viagem:");
         for(int i = 0; i < listaViagem.size(); i++){
             Viagem viagem = listaViagem.get(i);
-            System.out.println((i+1) + ". Data: " + viagem.getData() + ", Hora: " + viagem.getHora() + ", Onibus: " + viagem.getOnibus().getPlaca() + ",Linha: " + viagem.getLinha().getTerminal());
+            System.out.println((i+1) + "- Data: " + viagem.getData() + ", Hora: " + viagem.getHora() + ", Onibus: " + viagem.getOnibus().getPlaca() + ", Linha: " + viagem.getLinha().getTerminal());
         }
+        System.out.print("Entrada: ");
         int viagemSele = ler.nextInt();
         Viagem viagem = listaViagem.get(viagemSele - 1);
         
@@ -116,6 +137,10 @@ public class Main {
             System.out.println("Parada " + (i+1) + ": ");
             System.out.println("Quantos Passageiros Subiram? ");
             int subiram = ler.nextInt();
+            if(onibus.getPassageirosAtual() + subiram > onibus.getCapacidadeMaxima()){
+                System.out.println("Impossivel Subir Todos os Passageiros");
+                subiram = onibus.getCapacidadeMaxima() - onibus.getPassageirosAtual();
+            }
             onibus.setPassageirosAtual(onibus.getPassageirosAtual() + subiram);
             
             System.out.println("Quantos Passageiros Desceram? ");

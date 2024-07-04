@@ -11,7 +11,7 @@ public class Linha {
     public Linha() {
 
     }
-    
+
     public Linha(int nmPar, String term) {
         this.nmParadas = nmPar;
         this.terminal = term;
@@ -32,5 +32,9 @@ public class Linha {
 
     public void setTerminal(String terminal) {
         this.terminal = terminal;
+    }
+
+    public String toString() {
+        return this.getTerminal() + "," + this.getNmParadas();
     }
 }

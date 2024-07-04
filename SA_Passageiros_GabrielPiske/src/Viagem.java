@@ -12,7 +12,7 @@ public class Viagem {
 
     //Construtores
     public Viagem() {
-        
+
     }
 
     public Viagem(String data, String hora, Onibus onibus, Linha linha) {
@@ -62,5 +62,9 @@ public class Viagem {
 
     public void setQtdParadas(int qtdParadas) {
         this.qtdParadas = qtdParadas;
+    }
+
+    public String toString() {
+        return this.data + "," + this.hora + "," + this.onibus + "," + this.linha;
     }
 }

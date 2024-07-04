@@ -50,25 +50,7 @@ public class Onibus {
         this.passageirosAtual = passageirosAtual;
     }
 
-    //Subir passageiros
-    /* public void entradaPassageiros(int qtdPessoas) {
-        int resto;
-        if (qtdPessoas > this.capacidadeMaxima - this.passageirosAtual) {
-            resto = qtdPessoas - (this.capacidadeMaxima - this.passageirosAtual);
-            this.passageirosAtual = this.capacidadeMaxima;
-            System.err.println("Lotacao maxima do onibus. Ficaram de fora " + resto + " passageiros");
-        } else {
-            System.out.println("Subiram " + qtdPessoas + " passageiros.");
-            this.passageirosAtual += qtdPessoas;
-        }
+    public String toString() {
+        return this.getPlaca() + "," + this.capacidadeMaxima + "," + this.passageirosAtual;
     }
-
-    //Descer Passageiros
-    public void descidaPassageiros(int numero) {
-        if (this.passageirosAtual == 0) {
-            System.err.println("O onibus esta vazio.");
-        } else {
-            System.out.println("O passageiro desceu");
-        }
-    }*/
 }
