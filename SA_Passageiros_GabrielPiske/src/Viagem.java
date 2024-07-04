@@ -64,7 +64,8 @@ public class Viagem {
         this.qtdParadas = qtdParadas;
     }
 
+    @Override
     public String toString() {
-        return this.data + "," + this.hora + "," + this.onibus + "," + this.linha;
+        return data + "," + hora + "," + this.onibus + "," + this.linha ;
     }
 }

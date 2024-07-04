@@ -50,7 +50,8 @@ public class Onibus {
         this.passageirosAtual = passageirosAtual;
     }
 
+    @Override
     public String toString() {
-        return this.getPlaca() + "," + this.capacidadeMaxima + "," + this.passageirosAtual;
+        return placa + "," + capacidadeMaxima;
     }
 }

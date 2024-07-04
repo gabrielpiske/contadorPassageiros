@@ -34,7 +34,8 @@ public class Linha {
         this.terminal = terminal;
     }
 
+    @Override
     public String toString() {
-        return this.getTerminal() + "," + this.getNmParadas();
+        return terminal + "," + nmParadas;
     }
 }
