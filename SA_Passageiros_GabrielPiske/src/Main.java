@@ -64,7 +64,7 @@ public class Main {
 
     }
 
-//Tela para cadastramento do objeto onibus e já colocando-o na lista
+    //Tela para cadastramento do objeto onibus e já colocando-o na lista
     public static void cadastrarOnibus() throws IOException {
         try {
             System.out.println("Cadastrar Onibus: ");
