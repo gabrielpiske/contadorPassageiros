@@ -78,7 +78,8 @@ public class Main {
 
             FileWriter arquivo = new FileWriter("registroOnibus.txt", true);
             PrintWriter gravador = new PrintWriter(arquivo);
-            gravador.println(onibus);
+            //gravador.println(onibus);
+            gravador.println(placa + "," + cpMax);
             gravador.close();
         } catch (InputMismatchException e) {
             System.err.println("Erro de entrada, insira um numero valido.");
@@ -101,7 +102,8 @@ public class Main {
 
             FileWriter arquivo = new FileWriter("registroLinha.txt", true);
             PrintWriter gravador = new PrintWriter(arquivo);
-            gravador.println(linha);
+            gravador.println(nmParadas + "," + terminal);
+            //gravador.println(linha);
             gravador.close();
         } catch (InputMismatchException e) {
             System.err.println("Erro de entrada, insira um numero valido.");
@@ -154,7 +156,8 @@ public class Main {
 
             FileWriter arquivo = new FileWriter("registroViagem.txt", true);
             PrintWriter gravador = new PrintWriter(arquivo);
-            gravador.println(viagemRetornado);
+            gravador.println(data + "," + hora + "," + onibus.getPlaca() + "," + onibus.getCapacidadeMaxima() + "," + linha.getTerminal() + "," + linha.getNmParadas());
+            //gravador.println(viagemRetornado);
             gravador.close();
         } catch (InputMismatchException e) {
             System.err.println("Erro de entrada, insira um numero valido.");
@@ -209,10 +212,10 @@ public class Main {
                     if (desceram > onibus.getPassageirosAtual()) {
                         desceram = onibus.getPassageirosAtual();
                     }
+                    totalDesceram += desceram;
                 }
 
                 onibus.setPassageirosAtual(onibus.getPassageirosAtual() - desceram);
-                totalDesceram += desceram;
 
                 System.out.println("Passageiros Atuais no onibus: " + onibus.getPassageirosAtual());
             }
@@ -266,7 +269,6 @@ public class Main {
         String linha = "";
         File arq = new File(aarq);
         if (arq.exists()) {
-
             try {
                 FileReader abrindo = new FileReader(aarq);
                 BufferedReader leitor = new BufferedReader(abrindo);
