@@ -53,7 +53,7 @@ public class Main {
                         cadastrarViagem();
                         break;
                     default:
-                        System.out.println("Opcao Inavlida, Tente Novamente");
+                        System.out.println("Opcao Invalida, Tente Novamente");
                 }
             } catch (IOException | InputMismatchException e) {
                 System.err.println("Erro: " + e.getMessage());
@@ -70,7 +70,7 @@ public class Main {
             System.out.println("Cadastrar Onibus: ");
             System.out.println("Informe a Placa do Onibus: ");
             String placa = ler.next();
-            System.out.println("Informe a Capacidade máxima do Onibus: ");
+            System.out.println("Informe a Capacidade maxima do Onibus: ");
             int cpMax = ler.nextInt();
             Onibus onibus = new Onibus(placa, cpMax);
             listaOnibus.add(onibus);
@@ -122,7 +122,7 @@ public class Main {
                 System.err.println("Nao ha onibus Cadastrados.");
                 return;
             }
-            System.out.println("Selecione o Onbus: ");
+            System.out.println("Selecione o Onibus: ");
             for (int i = 0; i < listaOnibus.size(); i++) {
                 System.out.println((i + 1) + "." + listaOnibus.get(i).getPlaca());
             }
@@ -179,13 +179,15 @@ public class Main {
             System.out.print("Entrada: ");
             int viagemSele = ler.nextInt();
             Viagem viagem = listaViagem.get(viagemSele - 1);
-
+            
+            //instanciando objetos proprios da viagem
             Onibus onibus = viagem.getOnibus();
             Linha linha = viagem.getLinha();
 
             int totalSubiram = 0;
             int totalDesceram = 0;
-
+            
+            //decorendo paradas da linha
             for (int i = 0; i < linha.getNmParadas(); i++) {
                 System.out.println("Parada " + (i + 1) + ": ");
 
@@ -257,7 +259,7 @@ public class Main {
                 }
                 leitor.close();
             } catch (Exception erro) {
-                System.err.println("Erro ao recuperar dados do arquivo de ônibus: " + erro.getMessage());
+                System.err.println("Erro ao recuperar dados do arquivo registroOnibus.txt: " + erro.getMessage());
             }
 
         }
@@ -289,7 +291,7 @@ public class Main {
                 }
                 leitor.close();
             } catch (Exception erro) {
-                System.err.println("Erro ao recuperar dados do arquivo de viagens: " + erro.getMessage());
+                System.err.println("Erro ao recuperar dados do arquivo registroViagem.txt: " + erro.getMessage());
             }
 
         }
@@ -319,7 +321,7 @@ public class Main {
                 }
                 leitor.close();
             } catch (Exception erro) {
-                System.err.println("Erro ao recuperar dados do arquivo de viagens: " + erro.getMessage());
+                System.err.println("Erro ao recuperar dados do arquivo de registroLinha.txt: " + erro.getMessage());
             }
 
         }
