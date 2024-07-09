@@ -1,0 +1,6 @@
+Viagem: Data: 12/09/98, Hora: 4:09, Onibus: 12, Linha: Capitais
+Parada 1: Subiram 12, Desceram 0, Passageiros Atuais 12
+Parada 2: Subiram 75, Desceram 87, Passageiros Atuais 0
+Total de passageiros que subiram: 87
+Total de passageiros que desceram: 0
+--------------------------------------------------
