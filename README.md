@@ -25,7 +25,6 @@ O fluxograma do algoritmo está disponível nos seguintes links:
 - [Fluxograma no Miro](https://miro.com/app/board/uXjVK00jOBo=/?share_link_id=788314260011)
 
 ## Ferramentas Utilizadas
-- **Linguagem de Programação**: Java
 - **IDE**: Apache NetBeans 19
 - **Software de Fluxogramas**: Miro
 
@@ -39,7 +38,7 @@ Para instalar e executar o algoritmo em sua máquina, siga os passos abaixo:
 Após seguir os passos de instalação, basta abrir a pasta do projeto na IDE Apache NetBeans e executar o algoritmo. Certifique-se de que todos os arquivos de texto necessários (`registroOnibus.txt`, `registroLinha.txt`, `registroViagem.txt`, `balancoViagem.txt`) estão na pasta do projeto para o correto funcionamento do programa.
 
 ## Autor
-- <a href="https://br.linkedin.com/in/gabriel-piske">Gabriel Schweder Piske</a> - Técnico em Desenvolvimento de Sistemas - T DESI 2024/1 N1
+- <a href="https://br.linkedin.com/in/gabriel-piske">Gabriel Schweder Piske</a> - Técnico em Desenvolvimento de Sistemas SENAI
 
 ---
 
